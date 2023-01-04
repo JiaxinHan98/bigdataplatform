@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航页面</title>
+     <!-- 导入字体图标库 -->
+     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <!-- 154 可自由拖拽排序的表格-->
+    <style>
+     * {
+	padding: 0;
+	margin: 0;
+    text-decoration: none;
+    list-style: none;
+    }
+    body{
+        background-color: #dfd8f0;
+        /* 此处给高度设置为3000px是为了测试代码 编写代码用的  之后会删除掉的 */
+        height: 3000px;
+    }
+    
+    /* 搜索框样式 */
+    .shell{
+      position: relative;
+      width: 360px;
+      padding: 12px;
+      background-color: #7bceed;
+      border-radius: 20px;
+      /* 盒子阴影 */
+      box-shadow: 0 10px 50px #37d2e5,0 0 0 5px #fff;
+      /* 使用margin调整shell的位置 */
+      margin-left: 930px;
+      margin-top: 30px
+    }
+    .shell input{
+        outline: none;
+        width: 80%;
+        height: 24px;
+        color: #fff;
+        /* 默认的字体大小 样式 */
+        font: 8 15px '优设标题黑';
+        border: 0;
+        background-color: transparent;
+    }
+    .shell input:hover{
+        outline: none;
+    }
+    /* input框中placeholder中字体的颜色 */
+    /* chorme浏览器适配 */
+    .shell input::-webkit-input-placeholder{   
+        color: #fff;
+        /* 通过设置text-indent来通过首行缩进改变文字位置，也可以使用text-align或者padding值来设置。 */
+        padding-left:20px;
+    }
+    /* IE浏览器适配 */
+    .shell input:-ms-input-placeholder{
+        color: #fff;
+        padding-left:20px;
+    }
+    .shell a{
+        display: flex;
+        position: absolute;
+        right: 42px;
+        top: 15px;
+        color: #fff;
+        font-size: 20px;
+        width: 60px;
+        height: 28px;
+    }
+    .shell a .fa{
+        margin: 0px 6px;
+        transition: 0.3s;
+    }
+    .shell a .fa-search{
+        transform: translateX(-8px);
+        opacity: 1;
+    }
+    .shell a .fa-hand-o-right{
+        transform: translateX(-20px);
+        /* 默认其不显示 */
+        opacity: 0;
+    }
+    .shell a:hover .fa-search{
+        transform: translateX(0px);
+        /* 当鼠标移动搜索按钮的时候，让搜索按钮隐藏 */
+        opacity: 0;
+    }
+    .shell a:hover .fa-hand-o-right{
+        transform: translateX(25px);
+        /* 当鼠标移动搜索按钮的时候，让hand按钮显现 */
+        opacity: 1;
+    }
+    .shell a::before{
+        content: 'GO!';
+        position: absolute;
+        display: block;
+        font-size: 18px;
+        background-color: #ff7575;
+        /* 此处没有写完 没有和基本样式一致 */
+        right: -28px;
+        border-radius: 10px;
+        transition: 0.3s;
+        opacity: 0;
+        animation: box 1s infinite ease;
+
+    }
+    .shell a:hover::before{
+        /* 调整go的位置 */
+        top: -2px;
+        opacity: 1;
+    }
+    @keyframes box{
+        0%{
+            transform: rotate(0deg);
+        }
+        33%{
+            transform: rotate(8deg);
+        }
+        66%{
+            transform: rotate(-8deg);
+        }
+        100%{
+            transform: rotate(0deg);
+        }
+    }
+
+    /* 飞书的使用 操作一次给杰哥传代码 */
+    /* 模仿别人也做一个仓库  存放一些常用的插件 元素  */
+
+    /* body{
+     	display: flex;
+     	justify-content: center;
+     	align-items: center;
+     	height: 100vh;
+    } */
+
+    /* 导航栏样式 */
+    .nav ul{
+     	/* 让li水平排列 */
+         display: flex;
+         margin-top: 45px;
+         margin-left: 200px;
+    }
+    .nav ul li {
+	position: relative;
+	/* 取消项目编号 就是小黑点 */
+	list-style: none;
+	width: 150px;
+	height: 50px;
+	/* 让鼠标变成小手 */
+	cursor: pointer;
+	/* 让子元素保留其3D位置 */
+	transform-style: preserve-3d;
+	transition: all 1s;
+    }
+    /* 最后一个li元素的宽度设置成三个li的宽度150px*3=450px */
+    .nav ul li:last-child {
+    position: relative;
+	list-style: none;
+	width: 450px;
+	height: 50px;
+	cursor: pointer;
+	transform-style: preserve-3d;
+	transition: all 1s;
+    }
+    .nav ul li:hover {
+	transform: rotateX(90deg);
+    }
+    .nav ul li:hover div:first-child {
+	background-color: #7bceed;
+	background-size: 5px 5px;
+	background-position: 30px 30px;
+	background-image: linear-gradient(
+		45deg,
+		#478480 25%,
+		rgba(0, 0, 0, 0) 25%,
+		rgba(0, 0, 0, 0) 75%,
+		#478480 75%,
+		#478480
+	);
+    }
+    .nav ul li div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	line-height: 50px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 700;
+	color: #fff;
+    }
+    .nav ul li div:first-child {
+	background-color: #7bceed;
+	transform: translateZ(25px);
+    }
+    .nav ul li div:last-child {
+	background-color: #7bceed;
+	background-size: 5px 5px;
+	background-position: 30px 30px;
+	background-image: linear-gradient(
+		45deg,
+		#478480 25%,
+		rgba(0, 0, 0, 0) 25%,
+		rgba(0, 0, 0, 0) 75%,
+		#478480 75%,
+		#478480
+	);
+	/* 让第二个面往下移动25px 沿着X轴旋转-90度 */
+	transform: translateY(25px) rotateX(-90deg);
+    }
+     /* 将第一个盒子的左上角、左下角以及最后一个盒子的右上角、右下角圆角化  用id来吧  给第一个盒子 最后一个盒子加上id */
+     .first-div{
+        border-radius: 10px 0 0 10px;
+     }
+     .last-div{
+        border-radius: 0 10px 10px 0;
+     }
+
+    /* 工具部分 */
+    /* 版心部分 */
+    .w{
+      width: 1208px;
+      margin: auto;
+    }
+    .box{
+        margin-top: 30px;
+
+    }
+    .box-hd{
+        height: 45px;
+    }
+    .box-hd h3{
+        float: left;
+        font-size: 18px;
+        color: #494949;
+        margin-left: 5px;
+    }
+    .box-hd a{
+        float: right;
+        font-size: 15px;
+        color: #a5a5a5;
+        /* 注意：浮动的盒子不用担心外边距合并塌陷的问题 */
+        margin-top: 5px;
+        margin-right: 72px;
+    }
+    .box-bd{
+        /* 此处我将box-bd写成了规定的高度 如果后面还要新添加上新的li 则需注意高度问题 */
+      height: 605px;
+    }
+    /* 因为要给li加上右边距，所以为了让每一行最后一个小li不会因为ul宽度不够而引起换行，所以给ul加大宽度 230+15 = 245  245*5=1225px */
+    /* 230+15 = 245表示一个小li的宽度与右边距之和  245*5=1225px表示一行5个小li的宽度与右边距之和 */
+    .box-bd ul{
+        width: 1225px;
+    }
+    .box-bd ul li{
+        float: left;
+        width: 230px;
+        height: 270px;
+        background-color: #fff;
+        /* 每一小li之间有缝隙 15px  注意此处每行的最后一个li也有右边距  但是原本的ul不高宽 ，所以想到加大ul的宽度 */
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+    /* li之间的图片 */
+    .box-bd ul li img{
+        /* 让img和li保持宽度一样 特点：可以使li恰好能放下img的图片，且该图片能够随li的宽度变化而变化 */
+        width: 100%;
+    }
+    .box-bd ul li h4{
+        margin: 15px 20px 13px 35px;
+        font-size: 14px;
+        color: #050505;
+        /* 400表示字体不加粗 */
+        font-weight: 400;
+    }
+    .box-bd .department{
+        margin: 0 20px 0 35px;
+        font-size: 12px;
+        color: #999;
+    }
+    .box-bd .department span{
+        color: #ff7c2d;
+    }
+    .box-bd ul li h6{
+        margin: 5px 20px 0px 35px;
+        font-size: 12px;
+        color: #050505;
+        /* 400表示字体不加粗 */
+        font-weight: 400;
+    }
+    .box-bd h6 span{
+        color: #ff7c2d;
+    }
+
+    /* 工具文件下载容器 */
+    .download-list-widget{
+        border-top: 12px solid #7bceed;
+        padding-bottom: 10px;
+        
+    }
+
+    .download-list-widget h2{
+        color: #444;
+        line-height: 1.25em;
+        margin: 0.8rem 0 0.1em;
+        font-size: 1.50938em;
+        font-family: Flux-Regular, SourceSansProRegular, Arial, sans-serif;
+       
+    }
+    .download-list-widget p{
+        margin-bottom: 0.875em;
+    }
+    .heading-list{
+        font-size: 0.9em;
+        font-family: SourceSansProBold, Arial, sans-serif;
+        padding: 0.5em 0.5em 0.4em 0.75em;
+        margin-right: 1.25em;
+    }
+    .name-list{
+        width: 20%;
+    }
+    .date-list{
+        width: 30%;
+    }
+    .download-list{
+        width: 25%;
+    }
+    .enhancement-list{
+        width: 25%;
+        display: inline-block;
+        margin-right: -4px;
+        vertical-align: middle;
+    }
+    .name-list,.date-list,.download-list,.enhancement-list{
+        display: inline-block;
+        margin-right: -4px;
+        vertical-align: middle;
+    }
+    .download-list-widget .file-row-list{
+        /* 控制li文件列表行的高度 -- 以此来控制可显示的行数 */
+        height: 16.75em;
+        overflow-y: scroll;
+        margin-bottom: 0.5em;
+        border: 1px solid #caccce;
+    }
+    .file-row-list li{
+        padding: 0.5em 0.5em 0.4em 0.75em;
+        margin-right: 0;
+    }
+    .file-row-list li:nth-child(odd){
+        background-color: #f2f4f6;
+    }
+    .file-row-list li:nth-child(even){
+        background-color: #d5e7f0;
+    }
+    /* li列表中的文字大小 */
+    .file-row-list li span{
+        font-size: 0.795em;
+    }
+    /* 页脚 */
+    .footer-widget{
+        border-top: 12px solid #75a8d3;
+        /* 感觉此处要使用自定义的媒体查询  自定义不同的视口窗口下不同的宽度 */
+        /* 也可以外部引入媒体查询 */
+        width: 18%;
+        float: left;
+        margin-right: 2.12766%;
+        padding: 1.25em;
+    }
+    .footer-widget-title{
+        color: #444;
+        line-height: 1.25em;
+        margin: 0 0 0.1em;
+        font-family: Flux-Regular, SourceSansProRegular, Arial, sans-serif;
+        font-size: 1.50938em;
+        font-weight: normal;
+    }
+    /* 在style中使用媒体查询 */
+    /* 可视窗口小于800px */
+    @media screen and (max-width:800px) {
+        .footer-widget{
+            width: 13%;
+        }
+        
+    }
+    /* 可视窗口介于801px与1200px */
+    @media screen and (min-width:801px) and (max-width:1200px) {
+        .footer-widget{
+            width: 15%;
+        }
+        
+    }
+    /* 可视窗口介于1201px与1500px */
+    @media screen and (min-width:1201px) and (max-width:1500px) {
+        .footer-widget{
+            width: 18%;
+        }
+        
+    }
+    </style>
+</head>
+<body>
+    <!-- 搜索栏 -->
+   <div class="shell">
+        <input type="text" placeholder="Search for you want">
+        <a href="">
+             <!-- i标签用于斜体显示文本 -->
+             <!-- 此时的class="fa fa-hand-o-right"是https://fontawesome.com 中字体库的东西  通过head中的link引入该字体库 -->
+             <i class="fa fa-hand-o-right"></i>
+             <i class="fa fa-search"></i>
+        </a>
+   </div>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <ul>
+            <li>
+                <div class="first-div">About</div>
+                <div class="first-div">About</div>
+            </li>
+            <li>
+                <div>Downloads</div>
+                <div onclick="window.open('./Share_UpDownload.html','_blank','location=no,width=1200px,height=1200px')">Downloads</div>
+            </li>
+            <li>
+                <div>Documentation</div>
+                <div>Documentation</div>
+            </li>
+            <li>
+                <div class="last-div">Bulletin board</div>
+                <div class="last-div" onclick="window.open('./bulletin.html','_blank','location=no,width=1200px,height=1200px')">Bulletin board</div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 工具窗口部分 -->
+    <!-- 1号盒子为最大的盒子，box版心水平居中对齐 -->
+    <!-- 2号盒子为上面的部分，box-hd 里面左侧标题H3左浮动，右侧链接a右浮动 -->
+    <!-- 3号盒子为下面的部分，box-bd 里面是无序列表，有10个小li组成，其中每5个小li为一行 -->
+    <!-- 每一行有5个小li   每一个li里面又分为三部分：上面部分是存放图片  中间部分是显示工具的名称  底部是工具的所属部门-->
+    <div class="box w">
+          <div class="box-hd">
+              <h3>工具全览</h3>
+              <a href="#">查看全部</a>
+          </div>
+          <div class="box-bd">
+              <ul>
+                  <li>
+                      <img src="./imgs/screen03.jpeg" alt="">
+                      <h4>
+                          Watch NPI NMD使用的工具
+                      </h4>
+                      <div class="department">
+                          <span>部门</span> Watch NPI NMD
+                      </div>
+                      <h6>
+                          <span>负责人</span> 电话
+                      </h6>
+                  </li>
+                  <li>
+                    <img src="./imgs/screen03.jpeg" alt="">
+                    <h4>
+                        Watch NPI NMD使用的工具
+                    </h4>
+                    <div class="department">
+                        <span>部门</span> Watch NPI NMD
+                    </div>
+                    <h6>
+                        <span>负责人</span> 电话
+                    </h6>
+                  </li>
+                  <li>
+                    <img src="./imgs/screen03.jpeg" alt="">
+                    <h4>
+                        Watch NPI NMD使用的工具
+                    </h4>
+                    <div class="department">
+                        <span>部门</span> Watch NPI NMD
+                    </div>
+                    <h6>
+                        <span>负责人</span> 电话
+                    </h6>
+                  </li>
+                  <li>
+                    <img src="./imgs/screen03.jpeg" alt="">
+                    <h4>
+                        Watch NPI NMD使用的工具
+                    </h4>
+                    <div class="department">
+                        <span>部门</span> Watch NPI NMD
+                    </div>
+                    <h6>
+                        <span>负责人</span> 电话
+                    </h6>
+                  </li>
+                  <li>
+                    <img src="./imgs/screen03.jpeg" alt="">
+                    <h4>
+                        Watch NPI NMD使用的工具
+                    </h4>
+                    <div class="department">
+                        <span>部门</span> Watch NPI NMD
+                    </div>
+                    <h6>
+                        <span>负责人</span> 电话
+                    </h6>
+                  </li>
+                  <li>
+                    <img src="./imgs/screen03.jpeg" alt="">
+                    <h4>
+                        Watch NPI NMD使用的工具
+                    </h4>
+                    <div class="department">
+                        <span>部门</span> Watch NPI NMD
+                    </div>
+                    <h6>
+                        <span>负责人</span> 电话
+                    </h6>
+                  </li>
+                  <li>
+                    <img src="./imgs/screen03.jpeg" alt="">
+                    <h4>
+                        Watch NPI NMD使用的工具
+                    </h4>
+                    <div class="department">
+                        <span>部门</span> Watch NPI NMD
+                    </div>
+                    <h6>
+                        <span>负责人</span> 电话
+                    </h6>
+                  </li>
+                  <li>
+                    <img src="./imgs/screen03.jpeg" alt="">
+                    <h4>
+                        Watch NPI NMD使用的工具
+                    </h4>
+                    <div class="department">
+                        <span>部门</span> Watch NPI NMD
+                    </div>
+                    <h6>
+                        <span>负责人</span> 电话
+                    </h6>
+                  </li>
+                  <li>
+                    <img src="./imgs/screen03.jpeg" alt="">
+                    <h4>
+                        Watch NPI NMD使用的工具
+                    </h4>
+                    <div class="department">
+                        <span>部门</span> Watch NPI NMD
+                    </div>
+                    <h6>
+                        <span>负责人</span> 电话
+                    </h6>
+                  </li>
+                  <li>
+                    <img src="./imgs/screen03.jpeg" alt="">
+                    <h4>
+                        Watch NPI NMD使用的工具
+                    </h4>
+                    <div class="department">
+                        <span>部门</span> Watch NPI NMD
+                    </div>
+                    <h6>
+                        <span>负责人</span> 电话
+                    </h6>
+                  </li>
+              </ul>
+          </div>
+    </div>
+
+
+     <!-- 父元素 大盒子 -->
+     <div class="download-list-widget w">
+        <h2>工具文件download</h2>
+        <p>下载你想要的工具文件</p>
+         
+        <!-- 子元素 标题 -->
+        <div class="heading-list">
+            <span class="name-list">File Name</span>
+            <span class="date-list">Release Date</span>
+            <span class="download-list">&nbsp;</span>
+            <span class="enhancement-list">Click for more</span>
+        </div>
+         
+        <!-- 子元素 文件内容 -->
+        <ol class="file-row-list menu">
+            <!-- 每个小li里面有四个span -->
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                        DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                       DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                         DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                         DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                         DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                         DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                         DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                          DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+        </ol>
+
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer w">
+        <!-- 第一个页脚widget -->
+      <div class="footer-widget">
+          <h2 class="footer-widget-title">简介一</h2>
+          <p></p>
+          <p>
+              <a class="readmore" href="#"> Read more </a>
+          </p>
+      </div>
+
+
+    </div>
+   
+    <div class="footer-widget">
+        <h2 class="footer-widget-title">简介二</h2>
+        <p></p>
+        <p>
+            <a class="readmore" href="#"> Read more </a>
+        </p>
+    </div>
+
+    <div class="footer-widget">
+        <h2 class="footer-widget-title">简介三</h2>
+        <p></p>
+        <p>
+            <a class="readmore" href="#"> Read more </a>
+        </p>
+    </div>
+
+    <div class="footer-widget">
+        <h2 class="footer-widget-title">简介四</h2>
+        <p></p>
+        <p>
+            <a class="readmore" href="#"> Read more </a>
+        </p>
+    </div>
+</body>
+</html>

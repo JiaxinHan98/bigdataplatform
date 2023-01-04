@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <title>文件的上传与下载</title>
+    <!-- 给上传按钮下载按钮美化  加上向上的箭头 向下的箭头 -->
+    <!-- 灰色电脑资料二 -->
+    <!-- 此处新上传的文件应该放到ul>li列表中 -->
+    <!-- 给每一个li的添加上删除按钮  点击实现删除 -->
+    <!-- 新问题： 点击文件上传弹窗中的取消按钮后 也会在页面上显示：总数: 0 说明也进行了上传函数 故需要进行一次文件选择判断  -->
+    <!-- 是否可以通过文件名是否为空来判断 -->
+
+    <!-- 新问题： 当我加上判断文件长度的之后，无法再通过点击两次上传按钮输出文件 应该是点一次  已解决 -->
+    <!-- 新功能： 给每一个文件li添加上删除按钮   动态添加   问题1:修改删除按钮的样式  问题2:删除按钮不对齐 所有的删除按钮统一加上left:right或者全部放在li盒子的最右边  已解决 -->
+    <!-- 由于li是动态添加的元素 不好设置宽度或者说宽度设置了不起作用  所有想到给ul设置宽度依次来限制li  然后给删除按钮fa类中加上float：right即可实现所有的删除按钮对齐 -->
+
+    <!-- 删除按钮无法实现 -->
+    <!-- 点击删除按钮出现提示框 -->
+    <!-- 单文件上传   多文件上传 -->
+    <!-- 打开文件只是为了获取文件名  li中只是嵌套的文件名字属性 -->
+    <!--  -->
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .main_box{
+        min-width: 600px;
+        min-height: 400px;
+    }
+    .w{
+        height: 700px;
+        display: flex;
+        flex-direction: row;
+        background:url(./imgs/screen03.jpeg) no-repeat;
+        background-size: 100% 100%;
+    }
+    .left-box{
+        flex: 3 0 0;
+        height: 100%;
+       
+    }
+    .right-box{
+        flex: 1 0 0;
+        height: 100%;
+       
+    }
+    ul{
+        width: 550px;
+    }
+    span{
+        /* 此处用浮动的话，所有的元素都要加上浮动，所以不建议使用浮动 */
+        /* 所以此处想到用block把行内元素变成块元素 才能居中且才能用上下外边距属性 */
+       display: block;
+       text-align: center;
+       margin-top: 30px;
+       font-size: 20px;
+       letter-spacing: 3px;
+    }
+    /* 右边操作栏部分 */
+    .button-box{
+        margin-top: 40px;
+    }
+    .up-box{
+        /* 盒子水平居中 */
+        width: 100px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+    .up-box input[type='file']{
+        /* 隐藏 */
+        display: none;
+    }
+    .download-box{
+        /* 块级元素  当盒子有宽度的时候使用0 auto */
+        width: 100px;
+        margin: 0 auto;
+    }
+    .inside1 {
+      list-style: square;
+    }
+    /* em元素的样式 */
+    .inside2 {
+        width: 300px;
+        margin: 0 20px;
+        font-size: 13px;
+        background-color: #fff;
+    }
+    /* 删除按钮样式 */
+    .fa{
+        /* 加上右浮动  思考此处为啥不用一浮全父 也保持了页面 */
+        float: right;
+        width: 27px;
+        height: 16px;
+        padding: 0 3px;
+        font-size: 14px;
+        /* 惊奇发现button按钮的边框也可以去除 */
+        border: none;
+    }
+    /* 选中删除按钮的提示效果 */
+    .fa:hover{
+        color: red;
+        background-color: #fff;
+    }
+
+ 
+</style>
+</head>
+<body>
+     <div class="main_box">
+         <!-- 版心部分 -->
+        <div class="w">
+             <!-- 准备布置两列 -->
+            <!-- 第一列-->
+            <div class="left-box">
+                  <span>文件列表</span>
+                  <div class="file-box" id="filebox">
+                      <ul id="fileul"></ul>
+                  </div>
+            </div>
+         
+            <!-- 第二行列 -->
+            <div class="right-box">
+                <span>操作栏</span>
+                <div class="button-box">
+                    <!-- 上传按钮文件 -->
+                    <div class="up-box">
+                        <!-- input 设置为隐藏-->
+                        <!-- 不需要再把input盖在button上面，而是通过监听父节点的点击事件，在事件里面触发input的click方法 -->
+                       <input type="file" id="upInputfile">
+                       <button class="up_btn">上传文件</button>  
+                    </div>
+                     <!-- 下载文件按钮 -->
+                     <div class="download-box"> 
+                         <button class="download_btn">下载文件</button>
+                     </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- js部分 -->
+    <!-- 引入jquery -->
+    <script src="./js/jquery.min.js"></script>
+    <script>
+
+
+      var upbox = document.getElementsByClassName('up-box');
+      var upInputFile = document.getElementById('upInputfile');
+      var  fileUl = document.getElementById('fileul');
+      //   因为remove是动态添加的 在dom树上原本不存在的 所以此处使用getElementsByClassName无法调用到removefile   
+      //  var  removefile = document.getElementsByClassName('remove');
+      
+      
+      // 注意此处的upbox是通过getElementsByClassName获取的，表明upbox是一个数组
+      // 因此在事件监听时，必须加[0]，否则会报upbox.addEventListener is not a function
+       upbox[0].addEventListener("click",function(){
+            // 触发input file框的点击事件    
+             upInputFile.click();
+            // 通过添加事件监听器能够指定函数  注意体会与直接使用upInputfile.click()的区别
+            // 为upInputfile.click()事件指定作用函数
+           // upInputfile.addEventListener('click',uploadFile)
+        })
+
+        // 真正的获取文件对象  change判断文件是否改变 当在弹出框中选择文件
+        upInputFile.addEventListener('change', uploadFile,false);
+        
+
+             // 定义函数uploadFile  创建li元素使用createElement  
+             function uploadFile(e){
+                // 拼接content的内容
+                //var content = '';
+                // 目前不需要该统计文件总数的功能
+                // content = `<li>总数: ${files.length}</li>`
+                //content = '<li class="insdie1"><em class="inside2">'+ fileName +'</em><button class="removeBtn" ><i class="fa fa-trash"></i>删除</button></li>'
+                //  $('ul').append(content);
+                // 获取文件名
+                var files = e.target.files;
+                fileName = files[0].name;
+
+                // 动态添加li元素
+                var newLi = document.createElement('li');
+                // 动态添加em元素  
+                var newEm = document.createElement('em');
+                // 动态添加button删除按钮  
+                var removeButton = document.createElement('button');
+                // 给newEm追加样式
+                newEm.className = 'inside2';
+                // 给removeButton追加上样式   fa fa-trash是引入的库中的
+                removeButton.className = 'fa fa-trash';
+                //removeButton.className += 'removeBtn';
+                // 此处因为想要给removeButton添加两个类，但如果用className会出现新类替代旧类  DOM.className = '类名'一次只能设置一个类值，如果当前属性本身存在类值，会被替换
+                // 故此处想到用DOM.classList.add('类名一', '类名二', '类名三'); // 添加一个或多个类名
+                // removeButton.classList.add('fa fa-trash','removeBtn');
+                // 将文件名存放到em元素中
+                newEm.innerHTML = fileName;
+                // 将em放到新li元素中   
+                // 注意append是向尾巴添加元素  所以最后添加的元素在最后面
+                newLi.append(newEm)
+                // 将按钮放到新li元素中
+                newLi.append(removeButton);
+                //  再将li元素添加到ul中
+                fileUl.append(newLi);
+
+
+                //  删除元素按钮  删除的是li
+              //  注意删除事件一定要写在添加li元素的函数内部  因为只有先有了li元素才能够删除  思考为什么不放在函数uploadFile外部
+              //  注意该页面的button元素有很多  使用document.document 与 fileUl.document获取到元素范围不一样
+                var delbtn = fileUl.querySelectorAll('button');
+                 for(var i = 0 ; i < delbtn.length; i++){
+                     delbtn[i].onclick = function(){
+                        // 加上一个confirm框
+                        if(confirm("你确认要删除该文件吗？")){
+                            //console.log(this);
+                         //console.log(this.parentNode);
+                          // 需要删除的是button按钮的父元素li
+                          fileUl.removeChild(this.parentNode);
+                          // this.parent.remove();
+                          // 提示用户删除成功
+                          alert("删除成功！");
+                        }  
+                     }
+                 }
+
+                // 文件判空操作  通过文件总数来判断是否选择了文件
+                //  if($(files.length) > 0){  
+               // }     
+            
+             }
+
+              
+                
+            
+             
+             // 定义函数setInnerText，设置标签之间的内容,主要为处理浏览器兼容性问题
+             function setInnerText(element,content){
+                 if(typeof(element.innerText)==='string'){
+                     element.innerText=content;
+                 }else{
+                     element.textContent=content;
+                 }//部分浏览器支持元素的innerText,部分仅仅使用textContent
+             }
+             
+           
+
+
+    </script>
+</body>
+</html>

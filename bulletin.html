@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+    <!-- 引入字体库 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        body{
+            background-color: #5f9ea0;
+            height: 100%;
+            padding: 50px 100px;
+        }
+        #container{
+           background-color: #ffffff;
+           padding: 20px 20px;
+        }
+        /* 所有按钮的公共基本样式 */
+        button{
+            color: #ffffff;
+            border-radius: 5px;
+            height: 45px;
+            border-color: transparent;
+        }
+        #close button{
+            background-color: #28256b;
+            width: 100%;
+        }
+        #btn-submit{
+            background-color: #5f9ea0;
+            width: 60px;
+
+        }
+        .content{
+            margin-bottom: 20px;
+        }
+        input{
+            outline: none;
+            border-radius: 5px;
+            border-color: transparent;
+            background-color: #efefef;
+            height: 30px;
+            width: 200px;
+        }
+        input:disabled{
+            outline: none;
+            border-radius: 5px;
+            border-color: transparent;
+            background-color: #3b3636;
+            height: 30px;
+            width: 200px;
+        }
+        textarea{
+            outline: none;
+            resize: none;
+            width: 600px;
+            height: 50px;
+            border-radius: 5px;
+            border-color: transparent;
+            background-color: #efefef;
+        }
+        textarea:disabled{
+            outline: none;
+            resize: none;
+            width: 600px;
+            height: 50px;
+            border-radius: 5px;
+            border-color: transparent;
+            background-color: #3b3636;
+        }
+        .date{
+            float: right;
+        }
+       
+        /* 调节删除按钮fa-times-circle-o的位置 因为其是位于h4元素的最右边 */
+        h4{
+            position: relative;
+        }
+        .fa{
+            position: absolute;
+            right: 0;
+            bottom: -12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"> 
+        <div class="comment-box">
+            <div id="close">
+                <button id="btn-close">关闭留言</button>
+            </div>
+    
+            <header class="content">
+                <h2>留言板</h2>
+            </header>
+            <!-- 用户名字 -->
+            <div class="content"> 
+                <input type="text" id="name" placeholder="请输入你的姓名">
+    
+            </div>
+            <!-- 留言textarea区 -->
+            <div class="content">
+                <textarea name="comment" id="comment"  cols="30" rows="4" placeholder="请输入你的内容......"></textarea>
+            </div>
+            <!-- 留言按钮 -->
+            <div class="content">
+                <button id="btn-submit">留言</button>
+            </div>
+
+            <!--  留言列表区 -->
+            <div class="list">
+               <div>
+                   <h2>留言列表</h2>
+                   <div id="comments">
+                       <!-- 内容 -->
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./js/jquery.min.js"></script>
+    <script>
+        // 获取数据
+        let comments = [
+            // 是一个数组
+            {
+                name:'Jack',
+                comment:'放大对方即可获得释放',
+                time:'03.12.2020'
+            },
+            {
+                name:'Danny',
+                comment:'减肥的噶今年发布 v 啊的',
+                time:'07.09.2021'
+            }
+        ]
+
+        // 获取元素
+        let nameStr = document.getElementById('name');
+        let commentStr = document.getElementById('comment');
+        let content = document.getElementById('comments');
+        let btnclose = document.getElementById('btn-close');
+        let btnsubmit = document.getElementById('btn-submit');
+
+        // 函数
+        function postComments(){
+            // unshift方法将一个或多个元素添加到数组的开头，并返回该数组的新长度
+            comments.unshift({
+               name:nameStr.value,
+               comment:commentStr.value,
+              
+            // 此处思考是否不用new Date() 而是使用自己编写的获取当前时间的函数
+            //   time:new Date()
+               time:nowtime()
+            })
+        };
+
+        var renderComments = function(comments){
+            content.innerHTML = '';
+            for(let i=0;i<comments.length;i++){
+                let Comment = comments[i];
+                // insertAdjacentHTML方法将指定的文本解析为 Element 元素
+                content.insertAdjacentHTML(
+                    "beforeend",
+                    `
+                    <hr/>
+                    <h5>
+                    <span>${Comment.name}</span>
+                    <span class="date">${Comment.time}</span>
+                    </h5>
+                    <h4>
+                    <p>${Comment.comment}</p>
+                    </h4>
+                  
+                    `
+                );
+            }
+
+          }
+
+          renderComments(comments);
+          
+        //  留言按钮功能
+          btnsubmit.onclick = function(){
+            //  新增： 点击留言按钮时弹出一个confirm确认框
+            if(confirm("你确定要提交留言吗？")){
+                 // 判断namestr与commentstr内容不能为空
+                 if(nameStr.value == ''||commentStr.value == ''){
+                      alert("留言失败啦！！姓名或者留言内容不能为空哦");
+                 }else{
+                    //  注音下面几个函数的执行顺序，要先执行post和render,再执行置空操作
+                    // 点击留言按钮后，名字和留言栏textarea中的数据清空
+                    postComments(comments);
+                    renderComments(comments);
+                    alert("留言成功！");
+                    nameStr.value = '';
+                    commentStr.value = '';
+                 }
+            
+            }
+          }
+
+        // 新增：删除留言区中已存在留言信息的按钮
+        // 先获取删除按钮的元素
+        // 点击无效
+        let list = document.getElementsByClassName('list')[0];
+        let delbtn = list.querySelectorAll('button');
+        for(var i = 0 ; i < delbtn.length; i++){
+            delbtn[i].onclick = function(){
+                        // 加上一个confirm框
+                        if(confirm("你确认要删除该文件吗？")){
+                            //console.log(this);
+                         //console.log(this.parentNode);
+                          // 需要删除的是button按钮的父元素li
+                          fileUl.removeChild(this.parentNode);
+                          // this.parent.remove();
+                          // 提示用户删除成功
+                          alert("删除成功！");
+                        }  
+                     }
+                }
+
+        // 动态获取当前时间函数
+        var t = null;
+        // 开始运行
+        t = setTimeout(nowtime,1000);  
+        function nowtime(){
+            //清除定时器
+            clearTimeout(t);
+            var  dt = new Date();
+            var y = dt.getFullYear();
+            var mt = dt.getMonth() + 1;
+            var day = dt.getDate();
+            // 此处只需要保留年月日 格式为：年-月-日
+            // var h = dt.getHours();
+            // var m = dt.getMinutes();
+            // var s = dt.getSeconds();
+            // 定义一个时间字符串来接受返回值的拼接结果
+            var notestime =   y + "年" + mt + "月" + day + "日" ;
+            t = setTimeout(nowtime,1000);
+            return notestime;
+           
+        }
+
+        // 留言区关闭功能
+        btnclose.onclick = function(){
+            if(btnclose.innerHTML == "关闭留言"){
+                btnclose.innerHTML = "开启留言";
+                nameStr.disabled = true;
+                commentStr.disabled = true;
+            }else{
+                btnclose.innerHTML = "关闭留言";
+                nameStr.disabled = false;
+                commentStr.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

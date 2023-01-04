@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    /* 版心 */
+    .w{
+      width: 1200px;
+      margin: 0 auto;
+    }
+        /* 下载图标没有过来  li中的版心位置不对齐 */
+    li{
+        /* 清除前面的数字序号 */
+        list-style-type: none;
+    }
+        /* download容器样式 */
+    .download-list-widget{
+        border-top: 12px solid #7bceed;
+        padding-bottom: 10px;
+        
+    }
+    .download-list-widget h2{
+        color: #444;
+        line-height: 1.25em;
+        margin: 0.8rem 0 0.1em;
+        font-size: 1.50938em;
+        font-family: Flux-Regular, SourceSansProRegular, Arial, sans-serif;
+       
+    }
+    .download-list-widget p{
+        margin-bottom: 0.875em;
+    }
+    .heading-list{
+        font-size: 0.9em;
+        font-family: SourceSansProBold, Arial, sans-serif;
+        padding: 0.5em 0.5em 0.4em 0.75em;
+        margin-right: 1.25em;
+    }
+    .name-list{
+        width: 20%;
+    }
+    .date-list{
+        width: 30%;
+    }
+    .download-list{
+        width: 25%;
+    }
+    .enhancement-list{
+        width: 25%;
+        display: inline-block;
+        margin-right: -4px;
+        vertical-align: middle;
+    }
+    .name-list,.date-list,.download-list,.enhancement-list{
+        display: inline-block;
+        margin-right: -4px;
+        vertical-align: middle;
+    }
+    .download-list-widget .file-row-list{
+        /* 控制li文件列表行的高度 -- 以此来控制可显示的行数 */
+        height: 16.75em;
+        overflow-y: scroll;
+        margin-bottom: 0.5em;
+        border: 1px solid #caccce;
+    }
+    .file-row-list li{
+        padding: 0.5em 0.5em 0.4em 0.75em;
+        margin-right: 0;
+    }
+    .file-row-list li:nth-child(odd){
+        background-color: #f2f4f6;
+    }
+    .file-row-list li:nth-child(even){
+        background-color: #d5e7f0;
+    }
+    /* li列表中的文字大小 */
+    .file-row-list li span{
+        font-size: 0.795em;
+    }
+    </style>
+</head>
+<body>
+    <!-- 父元素 大盒子 -->
+    <div class="download-list-widget w">
+        <h2>Document</h2>
+        <p>Here is the file we have,search for you want...</p>
+         
+        <!-- 子元素 标题 -->
+        <div class="heading-list">
+            <span class="name-list">File Name</span>
+            <span class="date-list">Release Date</span>
+            <span class="download-list">&nbsp;</span>
+            <span class="enhancement-list">Click for more</span>
+        </div>
+         
+        <!-- 子元素 文件内容 -->
+        <ol class="file-row-list menu">
+            <!-- 每个小li里面有四个span -->
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                        DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                       DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                         DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                         DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                         DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                         DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                         DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+            <li>
+                <span class="name-list">文件1</span>
+                <span class="date-list">Dec.11,2022</span>
+                <span class="download-list">
+                    <a href="#">
+                        <!-- 该span是用来放下载按钮的图标 -->
+                        <span class="fa fa-download"></span>
+                          DownLoad
+                    </a>
+                </span>
+                <span class="enhancement-list">
+                    <a href="#">detailed description</a>
+                </span>
+            </li>
+        </ol>
+
+    </div>
+</body>
+</html>
