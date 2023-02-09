@@ -155,6 +155,56 @@
 	transform-style: preserve-3d;
 	transition: all 1s;
     }
+     .nav ul li:hover div{
+        background-color: #ddd;
+        color: black;
+    }
+    
+    /* 下拉菜单的样式 */
+     .nav #first_li #droplist {
+       /* 整个ul的盒子背景颜色和盒子阴影 */
+       background:#7bceed;
+       box-shadow:0px 1px 2px #666;
+
+    }
+     /* 显示droplist */
+     .nav #first_li:hover #droplist {
+        display:block;
+     }
+     /* 下拉菜单中li的样式 注意优先级要高于之前的.nav ul li  */\
+     .nav #first_li {
+  position:relative;
+     }
+     .nav #first_li #droplist{
+     position:absolute;
+     display:none;
+     left: -190px;
+     top: 5px;
+     border-radius: 1px;
+     }
+     .nav #first_li #droplist li{
+        border-top:1px solid #ccc
+        list-style: none;
+        width: 120px;
+        height: 30px;
+        cursor: pointer;
+        display: block;
+        padding: 8px 0px 0px 30px;
+        border-bottom: 1px solid #c3daf0;
+     }
+     .nav #first_li #droplist li:last-child{
+        border-top:1px solid #ccc
+        list-style: none;
+        width: 120px;
+        height: 30px;
+        cursor: pointer;
+        display: block;
+        padding: 8px 0px 0px 30px;
+       
+     }
+     .nav #first_li #droplist li a{
+         color: #050505;
+     }
     /* 最后一个li元素的宽度设置成三个li的宽度150px*3=450px */
     .nav ul li:last-child {
     position: relative;
@@ -165,6 +215,7 @@
 	transform-style: preserve-3d;
 	transition: all 1s;
     }
+   /*
     .nav ul li:hover {
 	transform: rotateX(90deg);
     }
@@ -181,6 +232,7 @@
 		#478480
 	);
     }
+    */
     .nav ul li div {
 	position: absolute;
 	top: 0;
@@ -417,9 +469,19 @@
     <!-- 导航栏 -->
     <div class="nav">
         <ul>
-            <li>
+            <li id="first_li">
                 <div class="first-div">About</div>
                 <div class="first-div">About</div>
+
+                <!-- about标签的下拉菜单  -->
+               <ul id="droplist">
+                  <li><a href="#">我是菜单一</a></li>
+                  <li><a href="#">我是菜单一</a></li>
+                   <li><a href="#">我是菜单一</a></li>
+                   <li><a href="#">我是菜单一</a></li>
+                    <!--  简介块 -->
+                   <li><a href="#">我是菜单一</a></li>
+              </ul>
             </li>
             <li>
                  <div onclick="window.open('./Share_UpDownload.html','_blank')">Downloads</div>
