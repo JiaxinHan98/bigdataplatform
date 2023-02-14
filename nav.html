@@ -420,7 +420,7 @@
         border-top: 12px solid #75a8d3;
         /* 感觉此处要使用自定义的媒体查询  自定义不同的视口窗口下不同的宽度 */
         /* 也可以外部引入媒体查询 */
-        width: 18%;
+        width: 19%;
         float: left;
         margin-right: 2.12766%;
         padding: 1.25em;
@@ -433,28 +433,19 @@
         font-size: 1.50938em;
         font-weight: normal;
     }
-    /* 在style中使用媒体查询 */
-    /* 可视窗口小于800px */
-    @media screen and (max-width:800px) {
-        .footer-widget{
-            width: 13%;
-        }
-        
-    }
-    /* 可视窗口介于801px与1200px */
-    @media screen and (min-width:801px) and (max-width:1200px) {
-        .footer-widget{
-            width: 15%;
-        }
-        
-    }
-    /* 可视窗口介于1201px与1500px */
-    @media screen and (min-width:1201px) and (max-width:1500px) {
-        .footer-widget{
-            width: 18%;
-        }
-        
-    }
+    /* 在style中使用媒体查询  2.14 */
+@media screen and (max-width:1100px){
+.footer-widget{
+/* 响应式布局 - 小于 600 px 时改为上下布局 */
+width: 100%;
+}
+}
+/* 列后清除浮动 */
+.footer:after {
+content: "";
+display: table;
+clear: both;
+}
     </style>
 </head>
 <body>
@@ -777,7 +768,7 @@
       </div>
 
 
-    </div>
+   
    
     <div class="footer-widget">
         <h2 class="footer-widget-title">简介二</h2>
@@ -802,5 +793,6 @@
             <a class="readmore" href="#"> Read more </a>
         </p>
     </div>
+ </div>
 </body>
 </html>
