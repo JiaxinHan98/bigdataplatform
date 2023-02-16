@@ -279,6 +279,7 @@
     .w{
       width: 1208px;
       margin: auto;
+      padding-bottom: 40px;
     }
     .box{
         margin-top: 30px;
@@ -290,7 +291,7 @@
     .box-hd h3{
         float: left;
         font-size: 18px;
-        color: #494949;
+        color: #b7adad;;
         margin-left: 5px;
     }
     .box-hd a{
@@ -426,7 +427,7 @@
         padding: 1.25em;
     }
     .footer-widget-title{
-        color: #444;
+        color: #fff;
         line-height: 1.25em;
         margin: 0 0 0.1em;
         font-family: Flux-Regular, SourceSansProRegular, Arial, sans-serif;
@@ -464,6 +465,161 @@ clear: both;
     top: 0;
     bottom: 0;
     margin: auto;
+}
+/* latestnews的样式 2.17号 */
+.row{
+    max-width: 76em;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+.medium-widget{
+    border-top: 6px solid #75a8d3;
+    width: 48.93617%;
+    float: left;
+    margin-right: 2.12766%;
+}
+@media screen and (max-width:1100px){
+.medium-widget{
+/* 响应式布局 - 小于 1100 px 时改为上下布局 */
+width: 100%;
+}
+}
+.shrubbery{
+    position: relative;
+    padding: 18px;
+}
+.widget-title{
+    font-size: 20px;
+    color: #fff;
+    line-height: 20px;
+    margin: 0 0 11px;
+    font-family: Flux-Regular, SourceSansProRegular, Arial, sans-serif;
+
+}
+.shrubbery .give-me-more{
+    display: block;
+    color: #caccce;
+    position: absolute;
+    top: 18px;
+    right: 4px;
+    margin-right: 14px;
+}
+.give-me-more a::before{
+    content: ">>>";
+    margin-right: 4px;
+}
+.give-me-more a:hover{
+    color: yellow;
+    background-color: rebeccapurple;
+}
+.medium-widget p{
+    font-size: 14px;
+    margin-bottom: 12px ;
+}
+.menu{
+    margin-left: 0;
+    list-style: none;
+    list-style-image: none;
+}
+.medium-widget ul:last-child{
+    margin-bottom: 0;
+}
+.news-widget li,.events-widget li{
+    padding-left: 105px;
+}
+.medium-widget li{
+    font-size: 15px;
+}
+.news-widget li,.events-widget li{
+    border-top: 1px solid #caccce;
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
+    position: relative;
+}
+.news-widget li time,.events-widget li time{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -11.25px;
+}
+.news-widget .say-no-more,.events-widget .say-no-more{
+    display: inline;
+    visibility: visible;
+}
+.medium-widget li > a{
+    display: inline-block;
+}
+a,a:active,a:visited,a:hover,a:visited:hover{
+    color: #fff;
+    text-decoration: none;
+}
+/* upcoming events的样式 */
+.medium-widget.last{
+    float: right;
+    margin-right: 0;
+}
+/* site-base 联系方式的样式 */
+.site-base{
+    border-top: 1px solid #111;
+    background-color: #2b5b84;
+    background-size: 100%;
+    background-image: -webkit-linear-gradient(#1e415e 10%, #2b5b84 90%);
+    background-image: linear-gradient(#1e415e 10%, #2b5b84 90%);
+    -moz-box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.03), inset 0 0 20px rgba(0, 0, 0, 0.03);
+    -webkit-box-shadow: inset 0 0 50px rgb(0 0 0 / 3%), inset 0 0 20px rgb(0 0 0 / 3%);
+    box-shadow: inset 0 0 50px rgb(0 0 0 / 3%), inset 0 0 20px rgb(0 0 0 / 3%);
+}
+.site-base-container{
+    padding: 16px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 120px;
+
+}
+@media screen and (min-width:800px){
+.footer-links,.copyright{
+font-size: 14px;
+}
+}
+@media screen and (min-width:640px){
+.footer-links{
+clear: both;
+text-align: center;
+}
+}
+.footer-links{
+    margin-bottom: 10px;
+    padding-top: 85px;
+}
+/* footer-linker内部的li标签 */
+@media screen and (min-width:640px){
+.footer-links li{
+display: inline-block;
+}
+}
+/* footer-linker内部的li标签下面的a链接 */
+.footer-links a{
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: #89b4d9;
+    font-family: Flux-Bold, SourceSansProBold, Arial, sans-serif;
+}
+@media screen and (min-width:940px){
+.footer-links a{
+padding: 5.4px 13.5px;
+}
+}
+.copyright{
+    clear: both;
+    color: #75a8d3;
+    text-align: center;
+    margin-bottom: 0;
+}
+small{
+    font-size: 85%;
 }
     </style>
 </head>
@@ -683,6 +839,129 @@ clear: both;
             <a class="readmore" href="#"> Read more </a>
         </p>
     </div>
+    </div>
+	    
+<!-- 添加 latest news 和  upcoming events -->
+    <div class="lists-widgets row">
+
+        <div class="medium-widget news-widget">
+            <div class="shrubbery">
+                            <h2 class="widget-title">
+                                <span class="icon-news"></span>
+                                Latest News
+                            </h2>
+                            <p class="give-me-more">
+                                <a href="#">More</a>
+                            </p>
+                            <ul class="menu">  
+                                <li>
+                                    <time datetime="">
+                                        <span>2023-02-10</span>
+                                    </time>
+                                    <a href="#">news one</a>
+                                </li>
+                                <li>
+                                    <time datetime="">
+                                        <span>2023-02-10</span>
+                                    </time>
+                                    <a href="#">news one</a>
+                                </li>
+                                <li>
+                                    <time datetime="">
+                                        <span>2023-02-10</span>
+                                    </time>
+                                    <a href="#">news one</a>
+                                </li>
+                                <li>
+                                    <time datetime="">
+                                        <span>2023-02-10</span>
+                                    </time>
+                                    <a href="#">news one</a>
+                                </li>
+ 
+                            </ul>
+                        </div>
+        </div>
+
+        <div class="medium-widget events-widget last" >
+            <div class="shrubbery">
+                            <h2 class="widget-title">
+                                <span class="icon-calendar"></span>
+                                Upcoming Events
+                            </h2>
+                            <p class="give-me-more">
+                                <a href="#">More</a>
+                            </p>
+                            <ul class="menu">
+                                <li>
+                                    <time datetime="">
+                                        <span class="say-no-more">2023</span>
+                                    </time>
+                                    <a href="#">this is a message</a>
+                                </li>
+                                <li>
+                                    <time datetime="">
+                                        <span class="say-no-more">2023</span>
+                                    </time>
+                                    <a href="#">this is a message</a>
+                                </li>
+                                <li>
+                                    <time datetime="">
+                                        <span class="say-no-more">2023</span>
+                                    </time>
+                                    <a href="#">this is a message</a>
+                                </li>
+                                <li>
+                                    <time datetime="">
+                                        <span class="say-no-more">2023</span>
+                                    </time>
+                                    <a href="#">this is a message</a>
+                                </li>
+                            </ul>
+                        </div>
+        </div>
+    </div>
+	    
+	 
+ <!-- 联系方式 -->
+    <div class="site-base">
+        <div class="site-base-container">
+            <ul class="footer-links navigation menu">
+                <li class="tier-1 element-1">
+                    <a href="#">信息一</a>
+                </li>
+                <li class="tier-1 element-2">
+                    <a href="#">信息二</a>
+                </li>
+                <li class="tier-1 element-3">
+                    <a href="#">信息三</a>
+                </li>
+                <li class="tier-1 element-4">
+                    <a href="#">信息四</a>
+                </li>
+            </ul>
+
+            <div class="copyright">
+                <p>
+                        <small>
+                            <span class="pre">Copyright ©2023.</span>
+                            &nbsp;
+                            <span class="pre">
+                                <a href="#">CATHub messsage</a>
+                            </span>
+                            &nbsp;
+                            <span class="pre">
+                                <a href="#">CATHub messsage</a>
+                            </span>
+                            &nbsp;
+                            <span class="pre">
+                                <a href="#">CATHub messsage</a>
+                            </span>
+                            &nbsp;
+                        </small>
+                </p>
+            </div>
+        </div>
     </div>
    
 
