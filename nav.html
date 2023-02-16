@@ -446,10 +446,31 @@ content: "";
 display: table;
 clear: both;
 }
+/* 背景图 动态背景 2.16 */
+.main{
+    background-color: #1D2B56;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.main_con{
+    position: absolute;
+    width: 97%;
+    /* min-width: 500px; */
+    height: 95%;
+    min-height: 450px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
     </style>
 </head>
-<body>
-    <!-- 搜索栏 -->
+<body id="particles-js" class="main">
+    <!-- 新增一个div来放置内部所有div  且用于定位背景图片 -->
+    <div class="main_con">
+        <!-- 搜索栏 -->
    <div class="shell">
         <input type="text" placeholder="Search for you want">
         <a href="">
@@ -462,6 +483,7 @@ clear: both;
     <!-- 导航栏 -->
     <div class="nav">
         <ul>
+              <!--    添加上 id="first-li"是为了给ul>li下面的下拉菜单设定高一级的优先级样式       -->
             <li id="first_li">
                 <div class="first-div">About</div>
                 <div class="first-div">About</div>
@@ -469,10 +491,11 @@ clear: both;
                 <!-- about标签的下拉菜单  -->
                <ul id="droplist">
                   <li><a href="#">CATHub,全称creative advanced tool hub,创造性的先进工具仓库,本平台收集了watch NPI常用的系统、Tool、app等软件集中管理,方便各部门员工查询使用等。</a></li>
-                 
+                
               </ul>
             </li>
-           <li>
+
+            <li>
                 <div onclick="window.location.href = './Share_UpDownload.html' ">Downloads</div>
                 <div onclick="window.location.href = './Share_UpDownload.html'">Downloads</div>
             </li>
@@ -623,9 +646,8 @@ clear: both;
           </div>
     </div>
 
-
-     <!-- 父元素 大盒子 delete -->
-   
+     <!-- 注释掉637行-766行  不要下面的大盒子downloadlsit -->
+     <!-- 父元素 大盒子 -->
 
     <!-- 页脚 -->
     <div class="footer w">
@@ -638,10 +660,7 @@ clear: both;
           </p>
       </div>
 
-
-   
-   
-    <div class="footer-widget">
+      <div class="footer-widget">
         <h2 class="footer-widget-title">简介二</h2>
         <p></p>
         <p>
@@ -664,6 +683,12 @@ clear: both;
             <a class="readmore" href="#"> Read more </a>
         </p>
     </div>
- </div>
+    </div>
+   
+
+    </div>
+    <!-- 加入外部js文件  动态背景图 -->
+    <script type="text/javascript" src="js/particles.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
