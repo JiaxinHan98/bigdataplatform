@@ -194,7 +194,7 @@
      .nav #first_li #droplist{
      position:absolute;
      display:none;
-     left: -190px;
+     left: 0px;
      top: 5px;
      border-radius: 1px;
      }
@@ -639,6 +639,157 @@ padding: 5.4px 13.5px;
 small{
     font-size: 85%;
 }
+/* 导航条下面的自动轮播图样式 */
+@media screen and (min-width:800px){
+.header-banner{
+margin: 0 32px 0 16px;
+}
+}
+@media screen and (min-width:640px){
+.header-banner{
+padding: 0;
+}
+}
+.header-banner{
+clear: both;
+position: relative;
+}
+.flex-slideshow{
+position: relative;
+margin: 0 auto;
+max-width: 1880px;
+width: 1000px;
+height: 310px;
+overflow: hidden;
+/* 左边栏的背景颜色 */
+/* background-color: green; */
+}
+.slideshow .slides li{
+overflow: hidden;
+}
+/* li下面左边的盒子 */
+@media screen and (min-width:800px){
+.slide-code-left{
+position: relative;
+line-height: 1.5;
+}
+}
+@media screen and (min-width:800px){
+.slide-code-left,.slide-code-right{
+float: left;
+width: 47%;
+/* min-height: 280px; */
+height: 270px;
+}
+}
+.slide-code-left{
+overflow: auto;
+padding: 20px 15px;
+}
+.slide-code-left,.slide-code-right{
+text-align: left;
+}
+/* 左边slide-code-left内部的code */
+.slide-code-left code{
+display: inline-block;
+color: red;
+}
+/* 轮播图中内部右边的slide-code-right */
+.slide-code-right{
+background-color: #1c3b56;
+padding: 20px 15px;
+}
+.slide-code-right h1{
+color: #ffd343;
+font-size: 22px;
+font-family: SourceSansProBold, Arial, sans-serif;
+}
+.slide-code-right p{
+font-size: 16px;
+}
+.header-banner p{
+color: #e6e8ea;
+}
+/* 轮播中的点击序号按钮 */
+#dive-into-cat .flex-control-paging{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    padding: 0 0 16px;
+    margin-left: 0;
+    width: 50%;
+    max-width: 500px;
+}
+.flex-control-nav{
+    text-align: center;
+}
+.flex-control-nav li{
+    display: inline-block;
+}
+#dive-into-cat .flex-control-paging a{
+    color: #e6e8ea !important;
+    text-shadow: none;
+    background-image: linear-gradient(#3776ab 10%, #2b5b84 90%);
+    border-top: 1px solid #3d83be;
+    border-right: 1px solid #3776ab;
+    border-bottom: 1px solid #3776ab;
+    border-left: 1px solid #3d83be;
+    box-shadow: inset 0 0 5px rgb(55 118 171 / 20%);
+
+    cursor: pointer;
+    font-weight: normal;
+    margin-bottom: 0.4375em;
+    padding: 0.4em 0.75em 0.35em;
+    text-align: left;
+    white-space: nowrap;
+    background-color: #cccccc;
+}
+.flex-control-nav a{
+    font-size: 1em;
+    line-height: 1em;
+    margin-left: 0.5em;
+    /* 将其block化 方便添加外边距 */
+    display: block;
+}
+/* 添加一个动画帧 使五个li依次播放显现 */
+/* 利用上下平移修改li   5%的等待时间暂停画面的时间 */
+@keyframes li_run {
+    0%{
+      transform: translateY(0px);
+    }
+    20%{
+        transform: translateY(0px);
+    }
+    25%{
+        transform: translateY(-310px);
+    }
+    45%{
+        transform: translateY(-310px);
+    }
+    50%{
+        transform: translateY(-620px);
+    }
+    70%{
+        transform: translateY(-620px);
+    }
+    75%{
+        transform: translateY(-930px);
+    }
+    95%{
+        transform: translateY(-930px);
+    }
+    100%{
+        transform: translateY(-1240px);
+    }
+    
+}
+/* 注意将动画放在ul里 slides  */
+.slideshow .slides{
+    animation: li_run 20s linear 0s infinite normal;
+    height: 310px;
+}
+/* 下面是轮播图右边序号的动画效果 */
+/* 仍然使用css animation来制作 未完成 */
     </style>
 </head>
 <body id="particles-js" class="main">
@@ -683,6 +834,104 @@ small{
             </li>
         </ul>
     </div>
+	    
+	    <!--  轮播图  17号完成一半 -->
+<div class="header-banner">
+<div id="dive-into-cat" class="flex-slideshow slideshow">
+<ul class="slides menu">
+<li>
+<div class="slide-code-left">
+<pre>
+<code>
+<span>this is some code info</span>
+</code>
+</pre>
+</div>
+<div class="slide-code-right">
+<h1>some title</h1>
+<p>
+this is some detailed information of CATHub
+</p>
+</div>
+</li>
+
+<li>
+<div class="slide-code-left">
+<pre>
+<code>
+<span>this is some code info</span>
+</code>
+</pre>
+</div>
+<div class="slide-code-right">
+<h1>some title</h1>
+<p>
+this is some detailed information of CATHub
+</p>
+</div>
+</li>
+
+<li>
+<div class="slide-code-left">
+<pre>
+<code>
+<span>this is some code info</span>
+</code>
+</pre>
+</div>
+<div class="slide-code-right">
+<h1>some title</h1>
+<p>
+this is some detailed information of CATHub
+</p>
+</div>
+</li>
+
+<li>
+<div class="slide-code-left">
+<pre>
+<code>
+<span>this is some code info</span>
+</code>
+</pre>
+</div>
+<div class="slide-code-right">
+<h1>some title</h1>
+<p>
+this is some detailed information of CATHub
+</p>
+</div>
+</li>
+
+<li>
+<div class="slide-code-left">
+<pre>
+<code>
+<span>this is some code info</span>
+</code>
+</pre>
+</div>
+<div class="slide-code-right">
+<h1>some title</h1>
+<p>
+this is some detailed information of CATHub
+</p>
+</div>
+</li>
+
+</ul>
+
+<!-- 手动轮播数字按钮 5个按钮 -->
+<!-- 发现li>a内部添加上class 通过css动画来使其动态显示 -->
+<ol class="flex-control-nav flex-control-paging">
+<li class="focus-item"><a >1</a></li>
+<li class="focus-item"><a>2</a></li>
+<li class="focus-item"><a>3</a></li>
+<li class="focus-item"><a>4</a></li>
+<li class="focus-item"><a>5</a></li>
+</ol>
+</div>
+</div>
 
     <!-- 工具窗口部分 -->
     <!-- 1号盒子为最大的盒子，box版心水平居中对齐 -->
