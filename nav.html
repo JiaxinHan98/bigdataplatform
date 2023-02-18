@@ -141,7 +141,10 @@
      	/* 让li水平排列 */
          display: flex;
          margin-top: 45px;
-         margin-left: 200px;
+         /* margin-left: 200px; */
+         align-items: center;
+         justify-content: center;
+	   
     }
     .nav ul li {
 	position: relative;
@@ -154,10 +157,23 @@
 	/* 让子元素保留其3D位置 */
 	transform-style: preserve-3d;
 	transition: all 1s;
+	     /* 18号 修改为inlie-block 以此来添加边距 */
+    display: inline-block;
+    padding: 0 20px;
     }
      .nav ul li:hover div{
         background-color: #ddd;
         color: black;
+    }
+/* 18号  修改第一个li的宽度 about的宽度 */
+    .nav ul li:first-child{
+    width: 60px;
+	height: 50px;
+    padding-left: 36px;
+    }
+    /* 18号 修改左边距 */
+    .nav ul li:nth-child(3){
+        padding-left: 25px;
     }
     
     /* 下拉菜单的样式 */
@@ -211,11 +227,13 @@
     .nav ul li:last-child {
     position: relative;
 	list-style: none;
-	width: 450px;
+	width: 190px;
 	height: 50px;
 	cursor: pointer;
 	transform-style: preserve-3d;
 	transition: all 1s;
+	 padding-right: 1px;
+    padding-left: 30px;
     }
    /*
     .nav ul li:hover {
@@ -641,8 +659,8 @@ small{
         <ul>
               <!--    添加上 id="first-li"是为了给ul>li下面的下拉菜单设定高一级的优先级样式       -->
             <li id="first_li">
-                <div class="first-div">About</div>
-                <div class="first-div">About</div>
+                <div class="first-div">&nbsp;&nbsp;&nbsp;&nbsp;About</div>
+                <div class="first-div">&nbsp;&nbsp;&nbsp;&nbsp;About</div>
 
                 <!-- about标签的下拉菜单  -->
                <ul id="droplist">
