@@ -799,11 +799,50 @@ color: #e6e8ea;
 .slide-code-left pre code em{
     color: blue;
 }
+/* 21号添加上logo */
+/* h1 左边大logo样式 */
+.headline-container{
+    float: left;
+    width: 600px;
+    height: 60px;
+    padding-left: 300px;
+    padding-top: 50px;
+}
+    /* h1 无论多大的时候的公共样式 */
+.headline{
+    color: #fff;
+    /* margin: 0.15em auto 0.2em; */
+    /* margin: 2.4px auto 3.2px; */
+}
+h1{
+    /* 此处color的颜色不会起作用 因为类选择器的优先级大于h1 */
+    color: #3776ab;
+    font-family: SourceSansProBold, Arial, sans-serif;
+    /* line-height: 1em; */
+    line-height: 16px;
+    /* font-size: 2.85em; */
+    font-size: 45.6px;
+    font-weight:700;
+    /* margin-bottom: 0.4375em; */
+    margin-bottom: 7px; 
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+/* logo结束 */
     </style>
 </head>
 <body id="particles-js" class="main">
     <!-- 新增一个div来放置内部所有div  且用于定位背景图片 -->
     <div class="main_con">
+	    
+	  <!-- 上-左边大logo   18号添加-->
+        <div class="headline-container">
+            <h1 class="headline">
+            <a href="#">CATHub</a>
+            </h1>
+        </div>
+	    
         <!-- 搜索栏 -->
    <div class="shell">
         <input type="text" placeholder="Search for you want">
@@ -1291,6 +1330,15 @@ this is some detailed information of CATHub
     <script type="text/javascript" src="js/particles.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
   <script>
+	 // 点击CATHublogo图标可以刷新页面  
+        var cathub_logo = document.getElementsByClassName('headline-container');
+        // 使用onclick()来添加刷新功能
+        cathub_logo[0].onclick = function(){
+            console.log('点击logo的刷新');
+            location.reload();
+        }
+	  
+	  
         // 获取轮播序号的ul整体
         var xuhao_ul = document.getElementsByClassName('flex-control-nav');
         var xuhao_ul_lis = xuhao_ul[0].getElementsByClassName('focus-item');
