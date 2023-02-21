@@ -728,7 +728,7 @@ color: #e6e8ea;
     display: inline-block;
 }
 #dive-into-cat .flex-control-paging a{
-    color: #e6e8ea !important;
+ /*  color: #e6e8ea !important; */
     text-shadow: none;
     background-image: linear-gradient(#3776ab 10%, #2b5b84 90%);
     border-top: 1px solid #3d83be;
@@ -978,11 +978,11 @@ this is some detailed information of CATHub
 <!-- 手动轮播数字按钮 5个按钮 -->
 <!-- 发现li>a内部添加上class 通过css动画来使其动态显示 -->
 <ol class="flex-control-nav flex-control-paging">
-<li class="focus-item"><a >1</a></li>
-<li class="focus-item"><a>2</a></li>
-<li class="focus-item"><a>3</a></li>
-<li class="focus-item"><a>4</a></li>
-<li class="focus-item"><a>5</a></li>
+<li class="focus-item"><a class="focus-item-a">1</a></li>
+<li class="focus-item"><a class="focus-item-a">2</a></li>
+<li class="focus-item"><a class="focus-item-a">3</a></li>
+<li class="focus-item"><a class="focus-item-a">4</a></li>
+<li class="focus-item"><a class="focus-item-a">5</a></li>
 </ol>
 </div>
 </div>
@@ -1290,5 +1290,50 @@ this is some detailed information of CATHub
     <!-- 加入外部js文件  动态背景图 -->
     <script type="text/javascript" src="js/particles.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+  <script>
+        // 获取轮播序号的ul整体
+        var xuhao_ul = document.getElementsByClassName('flex-control-nav');
+        var xuhao_ul_lis = xuhao_ul[0].getElementsByClassName('focus-item');
+
+        // 给flex-control-nav下面的focus-item下面的所有a标签新添加一个类名 便于获取到所有的a
+        var xuhao_ul_lis_a = document.getElementsByClassName('focus-item-a');
+        console.log(xuhao_ul_lis);
+        console.log(xuhao_ul_lis_a);
+
+        // 不用for循环了 直接将每一次的亮灯时间直接写出来
+        const main = ()=>{
+            // 第一个亮
+            xuhao_ul_lis_a[0].style.color = 'yellow';
+            setTimeout(()=>{
+                // 5s后第二个灯亮 同时第一个灯熄灭
+                xuhao_ul_lis_a[0].style.color = '#fff';
+                xuhao_ul_lis_a[1].style.color = 'yellow';
+                  setTimeout(()=>{
+                      // 5s后第三个灯亮 同时第二个灯熄灭
+                      xuhao_ul_lis_a[1].style.color = '#fff';
+                      xuhao_ul_lis_a[2].style.color = 'yellow';
+                          setTimeout(()=>{
+                            // 5s后第四个灯亮 同时第三个灯熄灭
+                            xuhao_ul_lis_a[2].style.color = '#fff';
+                            xuhao_ul_lis_a[3].style.color = 'yellow';
+                               setTimeout(()=>{
+                                  // 5s后第五个灯亮 同时第四个灯熄灭
+                                  xuhao_ul_lis_a[3].style.color = '#fff';
+                                  xuhao_ul_lis_a[4].style.color = 'yellow';
+                                      setTimeout(()=>{
+                                        // 结束一次亮灯循环，开启第二轮
+                                        // 同时将第五个灯熄灭
+                                        xuhao_ul_lis_a[4].style.color = '#fff';
+                                         main();
+                                      },5500)
+                               },5000)
+                          },5000)
+                  },5000)
+            },4000)
+
+        };
+        main();
+    </script>
+	
 </body>
 </html>
