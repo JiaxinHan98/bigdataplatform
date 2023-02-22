@@ -1,0 +1,2 @@
+# bigdataplatform
+pip install django
