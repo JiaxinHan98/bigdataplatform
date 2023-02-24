@@ -83,9 +83,31 @@
             right: 0;
             bottom: -12px;
         }
+         /* 背景图 动态背景  2.24号添加 */
+         .main{
+    background-color: #1D2B56;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+        .main_con{
+    position: absolute;
+    width: 97%;
+    /* min-width: 500px; */
+    height: 95%;
+    min-height: 450px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
     </style>
 </head>
-<body>
+<body id="particles-js" class="main">
+   <!-- 新增一个div来放置内部所有div  且用于定位背景图片 -->
+   <div class="main_con">
+         
     <div id="container"> 
         <div class="comment-box">
             <div id="close">
@@ -120,7 +142,11 @@
             </div>
         </div>
     </div>
+ </div>
     
+    <!-- 加入外部js文件  动态背景图 -->
+    <script type="text/javascript" src="js/particles.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
     <script src="./js/jquery.min.js"></script>
     <script>
         // 获取数据
