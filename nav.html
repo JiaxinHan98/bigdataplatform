@@ -199,7 +199,7 @@
      border-radius: 1px;
      }
      .nav #first_li #droplist li{
-        border-top:1px solid #ccc
+        border-top:1px solid #ccc;
         list-style: none;
         width: 120px;
         height: 30px;
@@ -210,7 +210,7 @@
         /* border-bottom: 1px solid #c3daf0; */
      }
      .nav #first_li #droplist li:last-child{
-        border-top:1px solid #ccc
+        border-top:1px solid #ccc;
         list-style: none;
         width: 406px;
         height: 76px;
@@ -266,11 +266,11 @@
 	color: #fff;
     }
     .nav ul li div:first-child {
-	background-color: #7bceed;
+	background-color: #4362a3;
 	transform: translateZ(25px);
     }
     .nav ul li div:last-child {
-	background-color: #7bceed;
+	background-color: #4362a3;
 	background-size: 5px 5px;
 	background-position: 30px 30px;
 	background-image: linear-gradient(
@@ -569,7 +569,7 @@ width: 100%;
     display: inline-block;
 }
 a,a:active,a:visited,a:hover,a:visited:hover{
-    color: #fff;
+    color: #9a9aff;
     text-decoration: none;
 }
 /* upcoming events的样式 */
@@ -653,7 +653,8 @@ padding: 0;
 .header-banner{
 clear: both;
 position: relative;
-z-index:-1;
+/* 1月20号 */
+z-index: -1;
 }
 .flex-slideshow{
 position: relative;
@@ -693,6 +694,7 @@ text-align: left;
 /* 左边slide-code-left内部的code */
 .slide-code-left code{
 display: inline-block;
+/* 18号修改 */
 color: #fff;
 }
 /* 轮播图中内部右边的slide-code-right */
@@ -728,7 +730,7 @@ color: #e6e8ea;
     display: inline-block;
 }
 #dive-into-cat .flex-control-paging a{
- /*  color: #e6e8ea !important; */
+    /* color: #e6e8ea !important; */
     text-shadow: none;
     background-image: linear-gradient(#3776ab 10%, #2b5b84 90%);
     border-top: 1px solid #3d83be;
@@ -785,21 +787,36 @@ color: #e6e8ea;
     
 }
 /* 注意将动画放在ul里 slides  */
-.slideshow .slides{
+/* 3月6号将 .slideshow .slides改变为.slides */
+.slides{
     animation: li_run 20s linear 0s infinite normal;
     height: 310px;
 }
 /* 下面是轮播图右边序号的动画效果 */
-/* 仍然使用css animation来制作 未完成 */
-	    
-/* 18号添加左边轮播图中code段特殊字符的颜色span */
-.slide-code-left pre code span{
-    color: #11a611;
+/* 仍然使用css animation来制作 */
+.focus-item{
+      border-radius:inherit;
+      animation-duration: 20s;
+      animation-timing-function: linear;
+      animation-name:colorchange;
+      animation-iteration-count: infinite;
 }
-.slide-code-left pre code em{
-    color: blue;
+.focus-item1{
+      animation-delay: -1s;
 }
-/* 21号添加上logo */
+.focus-item2{
+      animation-delay: 3s;
+}
+.focus-item3{
+      animation-delay: 7s;
+}
+.focus-item4{
+      animation-delay: 11s;
+}
+.focus-item5{
+      animation-delay: 15s;
+}
+/* 18号添加上logo */
 /* h1 左边大logo样式 */
 .headline-container{
     float: left;
@@ -830,6 +847,179 @@ h1{
     vertical-align: baseline;
 }
 /* logo结束 */
+/* 18号添加左边轮播图中code段特殊字符的颜色span */
+.slide-code-left pre code span{
+    color: #11a611;
+}
+.slide-code-left pre code em{
+    color: blue;
+}
+/* 3月2号  */
+/* 发现问题 .header-banner中的z-index的值为负数时  导致轮播数字按钮无法点击 */
+/* 但是如果将z-index取值改成大于0的数  轮播按钮可以点击了 但是about界面的下拉框会被遮挡 */
+/* 目前为了先写轮播按钮的点击功能  现将其设置为1 */
+.header-banner{
+    z-index: 1;
+}
+/* 3月3号新增 */
+.box-bd ul{
+        cursor: pointer;
+}
+/* 3月4号 给轮播图中的5个按钮添加鼠标移入事件 */
+#dive-into-cat .flex-control-nav .focus-item:hover .focus-item-a{
+    border: 1px solid #fff;
+}
+/* 3月6号 给每一个轮播数字按钮追加一个keyframes动画  */
+/* 当用户点击数字按钮后追加上相应的动画 */
+.firt_lunbo{
+    animation: first_move 2s;
+    animation-iteration-count: 1;
+
+}
+@keyframes first_move{
+   from{
+      transform: translateY(-1240px);
+   }
+   to{
+    transform: translateY(0px);
+   }
+}
+/* 依次添加上第二 第三 第四 第五个按钮的点击动画 */
+.second_lunbo{
+    animation: second_move 2s;
+    animation-iteration-count: 1;
+}
+@keyframes second_move {
+    from{
+      transform: translateY(0px);
+   }
+   to{
+    transform: translateY(-310px);
+   }
+}
+.third_lunbo{
+    animation: third_move 2s;
+    animation-iteration-count: 1;
+}
+@keyframes third_move {
+    from{
+      transform: translateY(-310px);
+   }
+   to{
+    transform: translateY(-620px);
+   }
+}
+.fourth_lunbo{
+    animation: fourth_move 2s;
+    animation-iteration-count: 1;
+}
+@keyframes fourth_move {
+    from{
+      transform: translateY(-620px);
+   }
+   to{
+    transform: translateY(-930px);
+   }
+}
+.fifth_lunbo{
+    animation: fifth_move 2s;
+    animation-iteration-count: 1;
+}
+@keyframes fifth_move {
+    from{
+      transform: translateY(-930px);
+   }
+   to{
+    transform: translateY(-1240px);
+   }
+   /*  思考如果只是加上 to 可以达到同样的效果 */
+}
+/*  3.10号 新增.nav左边空格盒子 和 右边空格盒子 */
+.nav ul li .blank_left{
+    width: 221px;
+    height: 50px;
+}
+/*  3.10号 将之前的nav.html页面中的.nav ul li div:first-child样式修改为second-child  */
+/*  同样修改last-child 为倒数第二个 */
+
+/* 14号重新.shell 覆盖css中的25行的  */
+.shell{
+    position: relative;
+    width: 360px;
+    padding: 12px;
+    background-color: #1e2933;
+    border-radius: 8px;
+    /* 去掉box-shadows  此处只是这样才能替换掉上面25行的*/
+     box-shadow: 0 0 0 0  ;
+    margin-left: 930px;
+    margin-top: 30px;
+}
+.shell input{
+    outline: none;
+    width: 70%;
+    height: 35px;
+    color: #444;
+    /* 通过内边距调节闪烁箭头的输入位置 */
+    padding: 1px 6px;
+    font: 8 15px '优设标题黑';
+    border: 0;
+    /*  重写input框的背景颜色 */
+    background-color: #ffffff;
+}
+/* 修改placeholder中的字体颜色和位置  避免提示字体被input框的背景颜色覆盖掉 */
+.shell input::-webkit-input-placeholder {
+    color: rgba(143, 140, 140, 0.976);
+    position:relative;
+    left:-5px;
+}
+/* 修改搜索框中span 搜索图标的大小和位置 */
+.shell .fa{
+    vertical-align: middle;
+    color: rgba(143, 140, 140, 0.976);
+}
+/*  修改搜索框中的搜索GO按钮的样式 */
+.shell .search-button{
+    width: 45px;
+    height: 40px;
+    margin-left: 6px;
+    background-color: #4362a3;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+}
+/* 15号  修改about下拉菜单 */
+/* 新增下拉菜单的左边栏 */
+/* 注意重新了li的样式覆盖掉之前211行的.nav #first_li #droplist li:first-child */
+/* 左边的两个小li droplistLeft的高度为 右边大li droplistRight 的一半  76/2=38px */
+/*  左边的两个小li droplistLeft的宽度改为50px   */
+.nav #first_li #droplist .droplistLeft{
+        border-top:1px solid #ccc;
+        list-style: none;
+        width: 50px;
+        height: 76px;
+        cursor: pointer;
+        /* display: inline-block; */
+        padding: 0px; 
+       
+     }
+     .nav #first_li #droplist .droplistRight{
+        border-top:1px solid #ccc;
+        list-style: none;
+        width: 200px;
+        height: 76px;
+        cursor: pointer;
+        /* display: inline-block; */
+        padding: 0px; 
+     }
+     /* 重写 css中的178 192两个.nav #first_li #droplist样式 */
+     .nav #first_li #droplist{
+         /* 由之前的display:none改为这个 */
+          display: flex;
+          /* 新增这个属性来隐藏 通过鼠标点击后显示js后面添加 但使用该属性会占位 但又有flex布局 */
+          visibility: hidden;
+          flex-direction: row;
+     }
+
     </style>
 </head>
 <body id="particles-js" class="main">
@@ -844,27 +1034,51 @@ h1{
         </div>
 	    
         <!-- 搜索栏 -->
-   <div class="shell">
-        <input type="text" placeholder="Search for you want">
-        <a href="">
-             <!-- i标签用于斜体显示文本 -->
-             <!-- 此时的class="fa fa-hand-o-right"是https://fontawesome.com 中字体库的东西  通过head中的link引入该字体库 -->
-             <i class="fa fa-hand-o-right"></i>
-             <i class="fa fa-search"></i>
-        </a>
+    <div class="shell">
+        <span class="fa fa-search fa-2x"></span>
+        <input type="text" placeholder="Search">
+        <button type="submit" class="search-button"> GO </button>
+       
    </div>
+ 
+
     <!-- 导航栏 -->
     <div class="nav">
         <ul>
+            <!--    3.10号新增一个最左边的空格li      -->
+            <!--    新增后nav版前的第一个first-child样式效果就变到此新增的li来了    -->
+            <!--    给新增的该li下面的第一个盒子 新增一个样式 实现最左边的空格盒子    -->
+            <!--    将第二个li下面盒子的first-div 删除掉 并将此first-div加到本页面第一个li下面的div下面  实现左边盒子圆角化    -->
+            <li>
+                <div class="blank_left first-div"></div>
+                <div></div>
+            </li>
+              
+            <!--    3.10号 删除了该li下面的 即aboutdiv盒子里面的class=first-div      -->
               <!--    添加上 id="first-li"是为了给ul>li下面的下拉菜单设定高一级的优先级样式       -->
             <li id="first_li">
-                <div class="first-div">&nbsp;&nbsp;&nbsp;&nbsp;About</div>
-                <div class="first-div">&nbsp;&nbsp;&nbsp;&nbsp;About</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;About</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;About</div>
 
                 <!-- about标签的下拉菜单  -->
+    <!-- 3.15号修改 下拉菜单为左右两个栏位 左边是二级选择菜单li  右边的是一个相应的展示大li  -->
                <ul id="droplist">
-                  <li><a href="#">CATHub,全称creative advanced tool hub,创造性的先进工具仓库,本平台收集了watch NPI常用的系统、Tool、app等软件集中管理,方便各部门员工查询使用等。</a></li>
-                
+                  <li class="droplistLeft">
+                    <span>Message1</span>
+                    <span>Message2</span>
+                  </li>
+                  <!--  <li class="droplistLeft">Message1</li>  -->
+                  <!--  <li class="droplistLeft">Message2</li>  -->
+                 
+
+                  <li class="droplistRight">
+                    <span>
+                        <a href="#">CATHub,全称creative advanced tool hub,创造性的先进工具仓库,本平台收集了watch NPI常用的系统、Tool、app等软件集中管理,方便各部门员工查询使用等。</a>
+                    </span>
+                    <span>
+                        <a href="#">Python is a programming language that lets you work more quickly and integrate your systems more effectively.</a>
+                    </span>
+                  </li>
               </ul>
             </li>
 
@@ -872,18 +1086,30 @@ h1{
                 <div onclick="window.location.href = './Share_UpDownload.html' ">Downloads</div>
                 <div onclick="window.location.href = './Share_UpDownload.html'">Downloads</div>
             </li>
+
             <li>
                 <div onclick="window.location.href = './document.html'">Documentation</div>
                 <div onclick="window.location.href = './document.html'">Documentation</div>
             </li>
+
+            <!--    3.10号 删除了该li下面的 即bullet盒子里面的class=last-div       -->
             <li>
-                <div class="last-div" onclick="window.location.href = './bulletin.html'">Bulletin board</div>
-                <div class="last-div" onclick="window.location.href = './bulletin.html'">Bulletin board</div>
+                <div  onclick="window.location.href = './bulletin.html'">Bulletin board</div>
+                <div  onclick="window.location.href = './bulletin.html'">Bulletin board</div>
+            </li>
+
+            <!--    3.10号新增一个最右边的空格li   -->
+            <!--    新增该li后之前版nav.html中的last-child的样式效果就变到这里来了  -->
+            <!--    给新增的该li下面的第一个盒子 新增一个样式 实现最右边的空格占位盒子   -->
+            <!--    3.10号 新增class=last-child 实现最右边盒子右边角的圆角化      -->
+            <li>
+                <div class="blank_right last-div"></div>
+                <div></div>
             </li>
         </ul>
     </div>
 	    
-	    <!--  轮播图  17号完成一半 -->
+<!--  轮播图  -->
 <div class="header-banner">
 <div id="dive-into-cat" class="flex-slideshow slideshow">
 <ul class="slides menu">
@@ -891,16 +1117,18 @@ h1{
 <div class="slide-code-left">
 <pre>
 <code>
-<span>import</span>os
-BASEDIR = os.path.<em>dirname</em>(__file__)
-
-# pandas: 1.1.3
-<span>import</span> pandas <span>as</span>  pd
-<span>import</span> matplotlib.pyplot <span>as</span> plt
-<span>from</span> matplotlib.pyplot <span>import</span> MultipleLocator
-<span>from</span>  pandas <span>import</span> DataFrame
-<span>import</span> warnings
-warnings.<em>filterwarnings</em>('ignore')
+<span>from</span> flask <span>import</span> Flask,render_template,request,jsonify,\
+    redirect,send_from_directory
+<span>from</span> flask_login <span>import</span> LoginManager,login_user,\
+    login_required,logout_user,current_user
+<span>from</span> flask_mongoengine  <span>import</span> MongoEngine
+<span>from</span> models <span>import</span> *
+<span>import</span> os,json,random
+<span>from</span> pathlib <span>import</span> Path
+<span>from</span> distutils.util <span>import</span> strtobool
+app = Flask(__name__, template_folder="templates", \
+      static_folder="static")
+app.config.from_object("config")
 </code>
 </pre>
 </div>
@@ -916,16 +1144,18 @@ this is some detailed information of CATHub
 <div class="slide-code-left">
 <pre>
 <code>
-<span>import</span>os
-BASEDIR = os.path.<em>dirname</em>(__file__)
+<span>import</span>  os
+<span>import</span>  json
+<span>from</span> flask <span>import</span> Flask,render_template,\
+    request,send_from_directory
+<span>from</span> data_process <span>import</span> work
 
-# pandas: 1.1.3
-<span>import</span> pandas <span>as</span>  pd
-<span>import</span> matplotlib.pyplot <span>as</span> plt
-<span>from</span> matplotlib.pyplot <span>import</span> MultipleLocator
-<span>from</span>  pandas <span>import</span> DataFrame
-<span>import</span> warnings
-warnings.<em>filterwarnings</em>('ignore')
+BASE_DIR = os.path.dirname(__file__)
+result_dir = os.path.join(BASE_DIR, "data")
+raw_DATA_DIR = os.path.join(BASE_DIR, "raw_data")
+
+app = Flask(__name__, template_folder="templates", \
+static_folder="static")
 </code>
 </pre>
 </div>
@@ -1017,11 +1247,11 @@ this is some detailed information of CATHub
 <!-- 手动轮播数字按钮 5个按钮 -->
 <!-- 发现li>a内部添加上class 通过css动画来使其动态显示 -->
 <ol class="flex-control-nav flex-control-paging">
-<li class="focus-item"><a class="focus-item-a">1</a></li>
-<li class="focus-item"><a class="focus-item-a">2</a></li>
-<li class="focus-item"><a class="focus-item-a">3</a></li>
-<li class="focus-item"><a class="focus-item-a">4</a></li>
-<li class="focus-item"><a class="focus-item-a">5</a></li>
+    <li class="focus-item" onclick="changeOne()"><a class="focus-item-a">1</a></li>
+<li class="focus-item" onclick="changeTwo()"><a class="focus-item-a">2</a></li>
+<li class="focus-item" onclick="changeThree()"><a class="focus-item-a">3</a></li>
+<li class="focus-item" onclick="changeFour()"><a class="focus-item-a">4</a></li>
+<li class="focus-item" onclick="changeFive()"><a class="focus-item-a">5</a></li>
 </ol>
 </div>
 </div>
@@ -1337,6 +1567,274 @@ this is some detailed information of CATHub
             console.log('点击logo的刷新');
             location.reload();
         }
+        
+
+        // 16号 鼠标移动到about的监听事件
+        // 鼠标移入到about标签处,给slides的z-index属性置为0
+        // 获取到about标签对应的li元素的id
+        var  about_el = document.getElementById('first_li');
+        // 获取到about下拉菜单
+        var about_el_menu = document.getElementById('droplist');
+        // 获取到类名为slides元素所在的父元素header-banner
+        var headerbanner_el = document.getElementsByClassName('header-banner')[0];
+        // 监听鼠标移入about事件
+        about_el.addEventListener('mouseover',function(){
+              headerbanner_el.style.zIndex = -1;
+              about_el_menu.style.visibility = 'visible';
+              
+        })
+        // 监听鼠标移出about事件
+        about_el.addEventListener('mouseout',function(){
+            headerbanner_el.style.zIndex = 0;
+            about_el_menu.style.visibility = 'hidden';
+        })
+
+        // 16号 工具全览中各个工具的点击进入功能
+        // 获取到每一个li元素
+        var box_bd = document.getElementsByClassName("box-bd");
+        var box_bd_ul = box_bd[0].getElementsByTagName('ul');
+        var box_bd_ul_li = box_bd_ul[0].getElementsByTagName('li');
+        // 给每一个li添加上点击工具链接
+        box_bd_ul_li[0].onclick = function(){
+            location.href = 'https://baidu.com';
+         }
+        box_bd_ul_li[1].onclick = function(){
+            location.href = 'https://baidu.com';
+         }
+        box_bd_ul_li[2].onclick = function(){
+            location.href = 'https://baidu.com';
+         }
+         box_bd_ul_li[3].onclick = function(){
+            location.href = 'https://baidu.com';
+         }
+         box_bd_ul_li[4].onclick = function(){
+            location.href = 'https://baidu.com';
+         }
+         box_bd_ul_li[5].onclick = function(){
+            location.href = 'https://baidu.com';
+         }
+         box_bd_ul_li[6].onclick = function(){
+            location.href = 'https://baidu.com';
+         }
+         box_bd_ul_li[7].onclick = function(){
+            location.href = 'https://baidu.com';
+         }
+        box_bd_ul_li[8].onclick = function(){
+            location.href = 'https://baidu.com';
+         }
+        box_bd_ul_li[9].onclick = function(){
+            location.href = 'https://baidu.com';
+        }
+
+
+        // 通过js操作轮播页面动画css
+        // 获取到样式表
+        var cssStyle = document.styleSheets;
+        // 获取到cssStyle[1]下面cssRules的长度
+        var cssRules_length = cssStyle[1].cssRules.length
+        // cssStyle[0]中的cssRules无法获取到
+        console.log(cssStyle[0]);
+        // cssStyle[1]中的cssRules可以获取到
+        console.log(cssStyle[1]);
+        // cssStyle[2]无法获取到  undefined
+        console.log(cssStyle[2]);
+
+        // 声明一个liFlag变量用于控制点击轮播序号按钮时的样式
+        var liFlag = false;
+
+        // 一号按钮
+        function changeOne(){
+
+            console.log("点击来按钮一")
+        
+            // 先将所有的轮播数字按钮设置成#fff
+            // 发现用for选好来遍历设置颜色有问题
+            // 先用笨方法将每一个手动设置  3.7号
+            //for(var i = 0; i < 5 ; i++){
+            //    xuhao_ul_lis_a[i].style.color = '#fff';
+            // } 
+            xuhao_ul_lis_a[1].style.color = '#fff';
+            xuhao_ul_lis_a[2].style.color = '#fff';
+            xuhao_ul_lis_a[3].style.color = '#fff';
+            xuhao_ul_lis_a[4].style.color = '#fff';
+            // 然后再将第一号按钮要变亮
+            xuhao_ul_lis_a[0].style.color = 'yellow';
+
+             // 3.7号新增
+            // 点击序号按钮后将liFlag设置为true(yes)  前提在全局变量中声明liFlag变量
+            liFlag = true;
+            
+            setTimeout(()=>{
+            //  通过追加类的方法添加动画  3.6号
+            // 首先先获取到要添加动画的元素
+            var lunbo_div = document.getElementsByClassName('slides')[0];
+
+            // 3.17号 每次点击轮播按钮时  先将ul中class类名初始化
+            lunbo_div.className = 'slides'
+            // 追加一个新元素 注意空格
+             lunbo_div.className += ' firt_lunbo';
+             // 发现问题 此时的方法是替换类名  所以需要在5s展示.firt_lunbo类后重新更新为初始化的类.slides及它的的动画li_run
+             // 利用定时器来重新调用动画li_run  5s后调用--改为1s
+             // 5s延迟的问题发生在点击之后 所以无法执行 
+             // setTimeout(changeSlidesLiAnimation,5000);
+             // 因此想到将其改成立即执行函数
+                 //  点击二号按钮后 停止按钮颜色的轮换 暂停main()方法中的循环5s  
+                 //  处理该问题
+                 // clearTimeout(main());
+             setTimeout(()=>{
+                 changeSlidesLiAnimation();
+             },5000)
+            },100)
+            
+            // 下面是尝试使用addRule、insertRule两个方法来修改keyframes 但是没有成功 转为用新增className
+            // 获取到cssStyle[1]下面cssRules的最后一个数组
+            console.log(cssStyle[1].cssRules[cssRules_length-1]);
+            // stylesheet.insertRule(rule [, index])  如果index为空则默认插入第一个
+            // 说明该insertRule方法可以使用
+            // cssStyle[1].insertRule(`#dive-into-cat .flex-control-nav .focus-item{border:2px solid red;}`)
+            // 尝试使用该insertRule给元素添加keyframes   尝试之后发现该方法无法添加keyframes 想到用添加css样式的方法追加
+            //cssStyle[1].insertRule(`@keyframes two_run{to:{transform:translateY(-310px);}}`);
+            //cssStyle[1].insertRule(`.slideshow .slides{animation: two_run 5s linear 0s infinite normal}`)
+            console.log(cssStyle[1]);
+            
+        }
+
+        // 二号按钮
+        function changeTwo(){
+            console.log("点击按钮二")
+          
+            // 不用for循环 用手动设置
+            xuhao_ul_lis_a[0].style.color = '#fff';
+            xuhao_ul_lis_a[2].style.color = '#fff';
+            xuhao_ul_lis_a[3].style.color = '#fff';
+            xuhao_ul_lis_a[4].style.color = '#fff';
+
+            xuhao_ul_lis_a[1].style.color = 'yellow';
+
+            // 3.7号新增
+            // 点击序号按钮后将liFlag设置为true(yes)  前提在全局变量中声明liFlag变量
+            liFlag = true;
+            
+            setTimeout(()=>{
+            var lunbo_div = document.getElementsByClassName('slides')[0];
+            // 3.17号 每次点击轮播按钮时  先将ul中class类名初始化
+            lunbo_div.className = 'slides'
+             lunbo_div.className += ' second_lunbo';
+             setTimeout(()=>{
+                 changeSlidesLiAnimation();
+             },5000)
+            },100)
+        
+        }
+
+        // 三号按钮
+        function changeThree(){
+
+            console.log("点击按钮三")
+          
+            xuhao_ul_lis_a[0].style.color = '#fff';
+            xuhao_ul_lis_a[1].style.color = '#fff';
+            xuhao_ul_lis_a[3].style.color = '#fff';
+            xuhao_ul_lis_a[4].style.color = '#fff';
+
+            xuhao_ul_lis_a[2].style.color = 'yellow';
+
+            // 3.7号新增
+            // 点击序号按钮后将liFlag设置为true(yes)  前提在全局变量中声明liFlag变量
+            liFlag = true;
+            
+            setTimeout(()=>{
+            var lunbo_div = document.getElementsByClassName('slides')[0];
+            // 3.17号 每次点击轮播按钮时  先将ul中class类名初始化
+            lunbo_div.className = 'slides'
+            lunbo_div.className += ' third_lunbo';
+             setTimeout(()=>{
+                 changeSlidesLiAnimation();
+             },5000)
+            },100)
+            
+        }
+
+        // 四号按钮
+        function changeFour(){
+
+            console.log("点击按钮四")
+           
+            xuhao_ul_lis_a[0].style.color = '#fff';
+            xuhao_ul_lis_a[1].style.color = '#fff';
+            xuhao_ul_lis_a[2].style.color = '#fff';
+            xuhao_ul_lis_a[4].style.color = '#fff';
+
+            xuhao_ul_lis_a[3].style.color = 'yellow';
+
+            // 3.7号新增
+            // 点击序号按钮后将liFlag设置为true(yes)  前提在全局变量中声明liFlag变量
+            liFlag = true;
+            
+            setTimeout(()=>{
+            var lunbo_div = document.getElementsByClassName('slides')[0];
+            // 3.17号 每次点击轮播按钮时  先将ul中class类名初始化
+            lunbo_div.className = 'slides'
+             lunbo_div.className += ' fourth_lunbo';
+             setTimeout(()=>{
+                 changeSlidesLiAnimation();
+             },5000)
+            },100)
+            
+        }
+    
+        // 五号按钮
+        function changeFive(){
+
+            console.log("点击按钮五")
+           
+            xuhao_ul_lis_a[0].style.color = '#fff';
+            xuhao_ul_lis_a[1].style.color = '#fff';
+            xuhao_ul_lis_a[2].style.color = '#fff';
+            xuhao_ul_lis_a[3].style.color = '#fff';
+
+            xuhao_ul_lis_a[4].style.color = 'yellow';
+
+            // 3.7号新增
+            // 点击序号按钮后将liFlag设置为true(yes)  前提在全局变量中声明liFlag变量
+            liFlag = true;
+            
+            setTimeout(()=>{
+            var lunbo_div = document.getElementsByClassName('slides')[0];
+            // 3.17号 每次点击轮播按钮时  先将ul中class类名初始化
+            lunbo_div.className = 'slides'
+             lunbo_div.className += ' fifth_lunbo'
+             setTimeout(()=>{
+                 changeSlidesLiAnimation();
+             },5000)
+            },100)
+            
+        }
+
+
+        //  重新更换轮播slides动画animation为li_run 
+        // 并且重新将轮播按钮中的样式重新恢复成不停循环换色的跑马灯效果 main()函数实现
+        function changeSlidesLiAnimation(){
+            var lunboFather_div = document.getElementsByClassName('slideshow')[0];
+            var lunbo_div = lunboFather_div.getElementsByTagName('ul')[0];
+            // 先将类置为空
+            lunbo_div.className = '';
+            // 恢复为初始值类名  slides类名
+            lunbo_div.className = 'slides';
+            // 重新将liFlag设置为false 允许main()继续执行
+            // 5s之后将liFlag设置为false  利用定时器
+            liFlag = false;
+            
+            // 重新调用main()函数  
+            setTimeout(main(),5000);
+        }
+
+       
+
+    
+
+
+    
 	  
 	  
         // 获取轮播序号的ul整体
@@ -1348,39 +1846,84 @@ this is some detailed information of CATHub
         console.log(xuhao_ul_lis);
         console.log(xuhao_ul_lis_a);
 
+
+
         // 不用for循环了 直接将每一次的亮灯时间直接写出来
-        const main = ()=>{
+        // 3.7号新增逻辑  添加liFlag判断 为真则终止main 为假则继续执行
+        //  无法显示console.log("正在运行main2"); 猜错是因为写了return false的原因
+const main = ()=>{
+
+     console.log("正在运行main");
+
+    // 运行前 现将所有按钮颜色设置为#fff  
+    // 因为点击轮播按钮的时候为将对应点击按钮设置为黄色 所以重新执行main时需要全部初始化为灰色
+    xuhao_ul_lis_a[0].style.color = '#fff';
+    xuhao_ul_lis_a[1].style.color = '#fff';
+    xuhao_ul_lis_a[2].style.color = '#fff';
+    xuhao_ul_lis_a[3].style.color = '#fff';
+    xuhao_ul_lis_a[4].style.color = '#fff';
+
+    // 第一个按钮的判断   要在每一个setTimeout()前面进行一次判断
+    if(liFlag == false){
+        console.log("正在运行main1");
             // 第一个亮
             xuhao_ul_lis_a[0].style.color = 'yellow';
             setTimeout(()=>{
+                // 第二个判断
+                if(liFlag == false){
+                    console.log("正在运行main2");
                 // 5s后第二个灯亮 同时第一个灯熄灭
                 xuhao_ul_lis_a[0].style.color = '#fff';
                 xuhao_ul_lis_a[1].style.color = 'yellow';
                   setTimeout(()=>{
-                      // 5s后第三个灯亮 同时第二个灯熄灭
+                      // 第三个判断
+                      if(!liFlag){
+                        console.log("正在运行main3");
+                        // 5s后第三个灯亮 同时第二个灯熄灭
                       xuhao_ul_lis_a[1].style.color = '#fff';
                       xuhao_ul_lis_a[2].style.color = 'yellow';
                           setTimeout(()=>{
-                            // 5s后第四个灯亮 同时第三个灯熄灭
+                            // 第四个判断
+                            if(!liFlag){
+                                console.log("正在运行main4");
+                              // 5s后第四个灯亮 同时第三个灯熄灭
                             xuhao_ul_lis_a[2].style.color = '#fff';
                             xuhao_ul_lis_a[3].style.color = 'yellow';
                                setTimeout(()=>{
-                                  // 5s后第五个灯亮 同时第四个灯熄灭
+                                   // 第五个判断 
+                                   if(!liFlag){
+                                    console.log("正在运行main5");
+                                    // 5s后第五个灯亮 同时第四个灯熄灭
                                   xuhao_ul_lis_a[3].style.color = '#fff';
                                   xuhao_ul_lis_a[4].style.color = 'yellow';
                                       setTimeout(()=>{
-                                        // 结束一次亮灯循环，开启第二轮
+                                          // 第六个判断 
+                                          if(!liFlag){
+                                            console.log("正在运行最后一次");
+                                               // 结束一次亮灯循环，开启第二轮
                                         // 同时将第五个灯熄灭
                                         xuhao_ul_lis_a[4].style.color = '#fff';
                                          main();
+                                          }
                                       },5500)
-                               },5000)
-                          },5000)
-                  },5000)
-            },4000)
+                                   }
 
-        };
-        main();
+                               },5000)
+
+                            }
+                           
+                          },5000)
+
+                      }
+                  },5000)
+
+                }
+            },4000)
+    }
+
+};
+main();
+
     </script>
 	
 </body>
