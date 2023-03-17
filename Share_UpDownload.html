@@ -235,6 +235,15 @@
 .left-title,.heading-list span,.right-box span{
     color: #fff;
 }
+/* 3月17号 要求去除操作栏和上传文件按钮 做法css样式隐藏 防止后续添加 但html中仍保留元素 */
+.w .right-box{
+    visibility: hidden;
+}
+/* 3月17号重写 left-box的样式 调整其位置 */
+.left-box{
+    flex: 9 0 0;
+    margin-left: 78px;
+}
  
 </style>
 </head>
@@ -257,7 +266,7 @@
                     <span class="name-list">File Name</span>
                     <span class="date-list">Release Date</span>
                     <span class="download-list">&nbsp;</span>
-                    <span class="enhancement-list">Click for more</span>
+                   <span class="enhancement-list">Remarks</span>
                   </div>
                     
                   <div class="file-box" id="filebox">
@@ -273,7 +282,7 @@
                             </a>
                             </span>
                             <span class="enhancement-list">
-                            <a href="#">detailed description</a>
+                              detailed description
                             </span>
                           </li>
 
@@ -288,7 +297,7 @@
                             </a>
                             </span>
                             <span class="enhancement-list">
-                            <a href="#">detailed description</a>
+                             detailed description
                             </span>
                           </li>
                       </ul>
